@@ -47,6 +47,29 @@ let predictions = kernel.predict_events();
 let status = kernel.status();
 ```
 
+## Ecosystem
+
+openconstruct-kernel is the **hardware layer (L0)** of the PLATO Nervous System.
+
+**Where this sits:** Layer 0 (hardware). Detects sensors, processes raw ticks, and feeds structured data into [plato-nervous](https://github.com/SuperInstance/plato-nervous) for deadband filtering and the signal chain.
+
+**Signal chain:**
+```
+Physical hardware → openconstruct-kernel (ticks) → plato-nervous (deadband L0) → ...
+```
+
+| Repo | Role |
+|------|------|
+| [plato-nervous](https://github.com/SuperInstance/plato-nervous) | Core signal chain — consumes raw tick data from this crate |
+| [plato-vision-jepa](https://github.com/SuperInstance/plato-vision-jepa) | Vision perception — may receive camera hardware detection |
+| [plato-audio-jepa](https://github.com/SuperInstance/plato-audio-jepa) | Audio perception — may receive microphone hardware detection |
+| [concrete-token-demo](https://github.com/SuperInstance/concrete-token-demo) | CLI demo of the full pipeline |
+| [plato-browser](https://github.com/SuperInstance/plato-browser) | Browser-native demo |
+| [luciddreamer-ai](https://github.com/SuperInstance/luciddreamer-ai) | Cloud-layer reactive podcast engine |
+| [hermit-crab](https://github.com/SuperInstance/hermit-crab) | Agent migration — hardware context informs migration decisions |
+
+See [DEPENDENCIES.md](./DEPENDENCIES.md) for detailed dependency and data flow information.
+
 ## License
 
 MIT
